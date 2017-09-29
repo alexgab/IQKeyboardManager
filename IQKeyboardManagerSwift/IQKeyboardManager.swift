@@ -1902,7 +1902,13 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     ///------------------
     
     /**	Get all UITextField/UITextView siblings of textFieldView. */
+    // Fixed: Previous and Next buttons not appear for texfields in different stack views
+    public var overrideIteratingTextFields: [UIView]?
     fileprivate func responderViews()-> [UIView]? {
+        
+        if let overriddenTextFields = overrideIteratingTextFields {
+            return overriddenTextFields
+        }
         
         var superConsideredView : UIView?
 
